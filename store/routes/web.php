@@ -24,3 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 });
 Route::resource('stores', 'StoreController');
+
+Route::get('stores/{store_id}/products', [
+    'as'   => 'showProductsStore',
+    'uses' => 'ProductController@index',
+]);

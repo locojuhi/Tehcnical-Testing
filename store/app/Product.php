@@ -2,17 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-class Store extends Model
+class Product extends Model
 {
     use SoftDeletes;
-
-    public function products()
+    public function store()
     {
-        return $this->hasMany('App\Product');
+        return $this->belongsTo('App\Store');
     }
-
     protected $dates = ['deleted_at'];
 }

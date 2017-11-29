@@ -17,8 +17,8 @@ class CreateStoresTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('opening_date');
-            $table->decimal('lat', 10, 7);
-            $table->decimal('lng', 10, 7);
+            $table->float('lat', 10, 6);
+            $table->float('lng', 10, 6);
             $table->softDeletes();
             $table->timestamps();
         });

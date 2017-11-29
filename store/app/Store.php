@@ -14,5 +14,6 @@ class Store extends Model
         return $this->hasMany('App\Product');
     }
 
+    protected $fillable = ['name', 'opening_date', 'lat', 'lng'];
     protected $dates = ['deleted_at'];
 }

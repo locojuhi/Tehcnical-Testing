@@ -19,7 +19,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
                                     <div class="pull-right" id="example1_length">
-                                        <a href="#" class = "btn btn-success">
+                                        <a href="{{route('createProductStore', ['store_id' => $store_id])}}" class = "btn btn-success">
                                             <span>
                                                 <i class="fa fa-plus"></i>
                                             </span>
@@ -40,6 +40,9 @@
                                             <th class="sorting"  aria-label="Platform(s): activate to sort column ascending" style="width: 196px;">
                                                 Monto
                                             </th>
+                                            <th>
+                                                Acciones
+                                            </th>
                                             
                                         </tr>
                                         @foreach ($products as $product)
@@ -52,6 +55,23 @@
                                                 </td>
                                                 <td>
                                                     {{$product->amount}}
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="{{route('showProductDetail', ['product_id' => $product->id, 'store_id' => $store_id])}}">Ver</a></li>
+                                                            <li><a href="{{route('editProductStore', ['product_id' => $product->id, 'store_id' => $store_id])}}">Editar</a></li>
+                                                            <li class="divider"></li>
+                                                            <li>
+                                                                <form method="POST" action="{{action('ProductController@destroy', ['id' => $product->id] )}}">
+                                                                    {{ method_field('DELETE') }}
+                                                                    {{ csrf_field() }}
+                                                                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

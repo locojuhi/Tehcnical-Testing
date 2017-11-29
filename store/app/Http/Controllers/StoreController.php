@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Store;
+use App\Http\Requests\StoreStoreRequest;
+use App\Http\Requests\UpdateStoreRequest;
+
 class StoreController extends Controller
 {
     /**
@@ -24,7 +27,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return "create view";
+        return view('stores.create');
     }
 
     /**
@@ -33,9 +36,19 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStoreRequest $request)
     {
-        //
+        $store = Store::create([
+            'name' => $request['name'],
+            'opening_date' => $request['opening_date'],
+            'lat' => $request['lat'],
+            'lng' => $request['lng'],
+        ]);
+        if($store){
+            return  redirect()->route('stores.show', ['id' => $store->id]);
+        }else{
+
+        }
     }
 
     /**
@@ -46,7 +59,9 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $store = Store::find($id);
+        return view('stores.show', compact('store'));
+
     }
 
     /**
@@ -57,7 +72,8 @@ class StoreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $store = Store::find($id);
+        return view('stores.edit', compact('store'));
     }
 
     /**
@@ -67,9 +83,13 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStoreRequest $request, $id)
     {
-        //
+        $store = Store::find($id);
+        $store->fill($request->all());
+        if($store->save()){
+            return  redirect()->route('stores.show', ['id' => $store->id]); 
+        }
     }
 
     /**
@@ -80,6 +100,8 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Store::destroy($id)){
+            return redirect()->route('stores.index');
+        }
     }
 }

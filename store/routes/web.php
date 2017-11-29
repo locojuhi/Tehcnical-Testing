@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('stores');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -29,3 +29,20 @@ Route::get('stores/{store_id}/products', [
     'as'   => 'showProductsStore',
     'uses' => 'ProductController@index',
 ]);
+
+Route::get('stores/{store_id}/products/create', [
+    'as'   => 'createProductStore',
+    'uses' => 'ProductController@create',
+]);
+
+Route::get('stores/{store_id}/products/{product_id}', [
+    'as'   => 'showProductDetail',
+    'uses' => 'ProductController@show',
+]);
+
+Route::get('stores/{store_id}/products/{product_id}/edit', [
+    'as'   => 'editProductStore',
+    'uses' => 'ProductController@edit',
+]);
+
+Route::resource('products', 'ProductController');

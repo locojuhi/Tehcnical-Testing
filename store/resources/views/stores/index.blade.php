@@ -51,7 +51,22 @@
                                                     {{$store->opening_date}}
                                                 </td>
                                                 <td>
-                                                    
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action</button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="{{route('stores.show', ['id' => $store->id])}}">Ver</a></li>
+                                                            <li><a href="{{route('stores.edit', ['id' => $store->id])}}">Editar</a></li>
+                                                            <li><a href="{{route('showProductsStore', ['store_id' => $store->id])}}">Administrar</a></li>
+                                                            <li class="divider"></li>
+                                                            <li>
+                                                                <form method="POST" action="{{action('StoreController@destroy', ['id' => $store->id] )}}">
+                                                                    {{ method_field('DELETE') }}
+                                                                    {{ csrf_field() }}
+                                                                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

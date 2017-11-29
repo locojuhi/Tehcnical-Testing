@@ -12,5 +12,7 @@ class Product extends Model
     {
         return $this->belongsTo('App\Store');
     }
+
+    protected $fillable = ['name', 'sku', 'description', 'amount'];
     protected $dates = ['deleted_at'];
 }

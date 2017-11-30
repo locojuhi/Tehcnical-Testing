@@ -2,6 +2,22 @@
 
 para la siguiente prueba se ha selecionado laravel framework 5.5 con adminlte para la parte visual
 
+## requisitos
+
+PHP >= 7.0.0
+
+OpenSSL PHP Extension
+
+PDO PHP Extension
+
+Mbstring PHP Extension
+
+Tokenizer PHP Extension
+
+XML PHP Extension
+
+composer
+
 ## Pasos para instalar la aplicacion
 
 1. Clonar el repositorio

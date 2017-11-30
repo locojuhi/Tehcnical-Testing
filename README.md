@@ -7,7 +7,7 @@
 
 2. ¿Estamos descartando algún elemento de la sucesión? ? Cuáles : OK.
 
-    - La susecion de fibonacci es 0, 1, 2, 3, 5, 8, 13.. Se estan descargando en 0 y el 1 inicial
+    - La susecion de fibonacci es 0, 1, 1, 2, 3, 5, 8, 13.. Se estan descargando en 0 y el 1 inicial
 
 3. ¿Qué tipo de codificación estamos usando?
     - Se ha codificado un string con base64
